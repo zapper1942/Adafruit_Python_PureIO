@@ -236,10 +236,10 @@ class SMBus:
         # Build ctypes values to marshall between ioctl and Python.
 
         # convert register into bytearray
-        if not isinstance(cmd, (bytes, bytearray)):
+        if not isinstance(cmd, (bytes, bytearray, memoryview)):
             reg = cmd  # backup
             cmd = bytearray(1)
-            cmd[0] = reg[0]
+            cmd[0] = reg
 
         cmdstring = create_string_buffer(len(cmd))
         for i, val in enumerate(cmd):
