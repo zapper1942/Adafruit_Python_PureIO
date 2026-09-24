@@ -239,7 +239,7 @@ class SMBus:
         if not isinstance(cmd, (bytes, bytearray)):
             reg = cmd  # backup
             cmd = bytearray(1)
-            cmd[0] = reg
+            cmd[0] = reg[0]
 
         cmdstring = create_string_buffer(len(cmd))
         for i, val in enumerate(cmd):
